@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" color-mode="user">
+
+<head>
+  <title>World Sounds</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+  <style>
+    .page-container {
+      text-align: center;
+      margin-top: 2em;
+    }
+  </style>
+  <!-- MVP.css: https://andybrewer.github.io/mvp/ -->
+  <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12.0/mvp.css" media="print" onload="this.media='all'">
+</head>
+
+<body>
+  <div class="page-container">
+    <a href="#" onclick="openCheckout()"><b>Buy Seconds</b></a>
+  </div>
+</body>
+<script type="text/javascript">
+  Paddle.Environment.set("sandbox");
+
+  Paddle.Initialize({
+    token: "test_xxx",
+    eventCallback: function (data) {
+      console.log(data);
+    }
+  });
+
+  function openCheckout() {
+    Paddle.Checkout.open({
+      items: [
+        {
+          priceId: "pri_xxx",
+          quantity: 1
+        }
+      ],
+      customData: {
+        "user_id": "00000000-0000-0000-0000-000000000000"
+      }
+    });
+  }
+</script>
+
+</html>
