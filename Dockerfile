@@ -2,8 +2,10 @@ FROM golang:latest AS build-stage
 
 WORKDIR /app
 
-COPY ./ /app
+COPY go.mod go.sum ./
+RUN go mod download
 
+COPY ./ ./
 RUN CGO_ENABLED=0 go build -o /out
 
 FROM debian:latest AS ffmpeg-stage
